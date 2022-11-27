@@ -1,4 +1,4 @@
-.loginWrapper {
+.registerWrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   margin: 0 auto;
 }
 
-.loginForm {
+.registerForm {
   background-color: var(--dark);
   padding: 2rem;
   color: white;
@@ -23,7 +23,7 @@
   margin: 0 1rem;
 }
 
-.loginForm input {
+.registerForm input {
   padding: 10px 20px;
   border: none;
   outline: none;

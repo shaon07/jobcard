@@ -1,9 +1,9 @@
 import { Button } from "@mui/material"
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import styles from './login.module.css'
+import styles from './register.module.css'
 
-export default function Login() {
+export default function Register() {
   const router = useNavigate()
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -11,9 +11,9 @@ export default function Login() {
   })
 
   return (
-    <div className={`${styles.loginWrapper}`}>
-      <form className={`${styles.loginForm}`}>
-        <div className={`${styles.loginEmail} ${styles.inputBox}`}>
+    <div className={`${styles.registerWrapper}`}>
+      <form className={`${styles.registerForm}`}>
+        <div className={`${styles.registerEmail} ${styles.inputBox}`}>
           <label htmlFor="email">Email Address</label>
           <input type="text"
             id="email"
@@ -21,7 +21,7 @@ export default function Login() {
             onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
           />
         </div>
-        <div className={`${styles.loginPassword} ${styles.inputBox}`}>
+        <div className={`${styles.registerPassword} ${styles.inputBox}`}>
           <label htmlFor="email">Password</label>
           <input type="password"
             id="password"
@@ -31,8 +31,8 @@ export default function Login() {
         </div>
 
         <div className={`${styles.formBtn}`}>
-          <Button color="success" variant="contained">Login</Button>
-          <code onClick={() => router("/register")}>Dont have a account ?</code>
+          <Button color="success" variant="contained">register</Button>
+          <code onClick={() => router('/')}>Already have an account ?</code>
         </div>
       </form>
     </div>
