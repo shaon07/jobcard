@@ -15,23 +15,27 @@ export default function Login() {
       <form className={`${styles.loginForm}`}>
         <div className={`${styles.loginEmail} ${styles.inputBox}`}>
           <label htmlFor="email">Email Address</label>
-          <input type="text"
+          <input
+            type="email"
             id="email"
+            required
             value={userInfo.email}
             onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
           />
         </div>
         <div className={`${styles.loginPassword} ${styles.inputBox}`}>
           <label htmlFor="email">Password</label>
-          <input type="password"
+          <input
+            type="password"
             id="password"
+            required
             value={userInfo.password}
             onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
           />
         </div>
 
         <div className={`${styles.formBtn}`}>
-          <Button color="success" variant="contained">Login</Button>
+          <Button color="success" type="submit" variant="contained">Login</Button>
           <code onClick={() => router("/register")}>Dont have a account ?</code>
         </div>
       </form>
