@@ -11,10 +11,10 @@ export default function Register() {
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
-    fullName: "",
-    date: "",
+    full_name: "",
+    birthDate: "",
     gender: "",
-    phone: ""
+    phone_number: ""
   })
 
   const handleChange = (e) => {
@@ -24,7 +24,9 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signUp(userInfo.email, userInfo.password)
+      await signUp(userInfo)
+      router("/")
+
     } catch (error) {
       setError(error.message)
     }
@@ -40,9 +42,9 @@ export default function Register() {
           <input
             type="text"
             id="text"
-            name="fullName"
+            name="full_name"
             required
-            value={userInfo.fullName}
+            value={userInfo.full_name}
             onChange={handleChange}
           />
         </div>
@@ -62,15 +64,20 @@ export default function Register() {
           <input
             type="date"
             id="date"
-            name="date"
+            name="birthDate"
             required
-            value={userInfo.date}
+            value={userInfo.birthDate}
             onChange={handleChange}
           />
         </div>
         <div className={`${styles.registerEmail} ${styles.inputBox}`}>
-          <label htmlFor="date">Date of Birth</label>
-          <select name="gender" value={userInfo.gender} onChange={handleChange}>
+          <label htmlFor="gender">{userInfo.gender || "Select gender"}</label>
+          <select
+            name="gender"
+            value={userInfo.gender || "Select gender"}
+            onChange={(e) => setUserInfo({ ...userInfo, gender: e.target.value })}
+          >
+            <option value="Select">Select</option>,
             <option value="Male">Male</option>,
             <option value="Female">Female</option>,
             <option value="Custom">Custom</option>,
@@ -81,9 +88,9 @@ export default function Register() {
           <input
             type="number"
             id="phone"
-            name="phone"
+            name="phone_number"
             required
-            value={userInfo.phone}
+            value={userInfo.phone_number}
             onChange={handleChange}
           />
         </div>

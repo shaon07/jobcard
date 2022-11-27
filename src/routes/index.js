@@ -8,6 +8,8 @@ import { useUserAuth } from "../context"
 export default function RoutesProvider() {
   const { user } = useUserAuth();
 
+  console.log(user)
+
   return (
     user ?
       <>
