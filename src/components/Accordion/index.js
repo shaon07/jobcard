@@ -1,6 +1,6 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { Accordion } from "@mui/material";
+import { Accordion, Button } from "@mui/material";
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
@@ -32,56 +32,22 @@ export default function AccordionCard({ id }) {
           <Box className={`${styles.jobs}`}>
             <b>Sales Manager</b>
             <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
+              <Button>Delete</Button>
+              <Button>Apply Now</Button>
             </div>
           </Box>
           <Box className={`${styles.jobs}`}>
             <b>Sales Manager</b>
             <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
+              <Button>Delete</Button>
+              <Button>Apply Now</Button>
             </div>
           </Box>
           <Box className={`${styles.jobs}`}>
             <b>Sales Manager</b>
             <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
-            </div>
-          </Box>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 2} onChange={handleChange(2)} className={`${styles.accoundion}`}>
-        <AccordionSummary
-          expandIcon={expanded === 2 ? <RemoveIcon /> : <AddIcon />}
-          aria-controls="panel1bh-content"
-          id={id}
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }} className={`${styles.heading}`}>
-            General settings
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
-            </div>
-          </Box>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
-            </div>
-          </Box>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <button>Delete</button>
-              <button>Apply Now</button>
+              <Button>Delete</Button>
+              <Button>Apply Now</Button>
             </div>
           </Box>
         </AccordionDetails>
