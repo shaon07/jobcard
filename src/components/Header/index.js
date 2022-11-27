@@ -1,8 +1,11 @@
-import { Button } from "@mui/material"
-import React from 'react'
-import styles from './header.module.css'
+import { Button } from "@mui/material";
+import React from 'react';
+import { useUserAuth } from "../../context";
+import styles from './header.module.css';
 
 export default function Header() {
+  const { logOut } = useUserAuth();
+
   return (
     <div className={`${styles.headerWrapper}`}>
       <div className={`${styles.logo}`}>
@@ -10,7 +13,7 @@ export default function Header() {
       </div>
       <div className={`${styles.navitems}`}>
         <Button variant="contained" >Create Job</Button>
-        <Button variant="contained" color="error">Logout</Button>
+        <Button variant="contained" color="error" onClick={logOut}>Logout</Button>
       </div>
     </div>
   )

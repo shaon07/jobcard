@@ -1,18 +1,34 @@
 import { Button } from "@mui/material"
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import { useUserAuth } from "../../../context"
 import styles from './register.module.css'
 
 export default function Register() {
   const router = useNavigate()
+  const { signUp } = useUserAuth();
+  const [error, setError] = useState()
+
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: ""
   })
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await signUp(userInfo.email, userInfo.password)
+      router('/')
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
   return (
     <div className={`${styles.registerWrapper}`}>
-      <form className={`${styles.registerForm}`}>
+      <form className={`${styles.registerForm}`} onSubmit={handleSubmit}>
+        <code style={{ color: "red", marginBottom: "20px" }}>{error}</code>
         <div className={`${styles.registerEmail} ${styles.inputBox}`}>
           <label htmlFor="email">Email Address</label>
           <input
