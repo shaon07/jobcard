@@ -25,3 +25,24 @@ p {
   padding: 2rem;
   height: 100%;
 }
+
+.divider {
+  width: 5rem;
+  height: 0.3rem;
+  background-color: var(--green);
+  display: block;
+  margin: 5px auto;
+}
+
+.homepageHeading h2 {
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.homepageHeading p {
+  color: var(--dark);
+  font: 18px;
+  font-weight: 500;
+}

@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 :root {
@@ -10,4 +11,5 @@
   --third: #F5F5F5;
   --darkGrey: #626262;
   --dark: #121212;
+  --green: #5BBC2E;
 }

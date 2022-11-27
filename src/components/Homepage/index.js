@@ -9,6 +9,7 @@ export default function Homepage() {
     <div className={`${styles.homepageWrapper}`}>
       <Container className={`${styles.container}`}>
         <Box className={`${styles.homepageHeading}`}>
+          <div className={`${styles.divider}`}></div>
           <h2>BROWSE OPEN POSITIONS BY CATEGORY</h2>
           <p>We are always on the lookout for talanted people</p>
         </Box>
