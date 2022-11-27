@@ -1,0 +1,57 @@
+.accoundion {
+  border: 2px solid var(--secondary);
+  background-color: var(--third) !important;
+}
+
+
+
+.heading {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: var(--darkGrey) !important;
+}
+
+.jobs {
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white !important;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.jobs:hover {
+  border: 1px solid var(--secondary);
+}
+
+.jobs button {
+  background: white;
+  border: 1px solid grey;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.jobs button:hover {
+  background-color: var(--dark) !important;
+  color: white;
+}
+
+.jobs b {
+  padding-left: 15px;
+  padding-bottom: 3px;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jobCard {
+  margin: 10px 0;
+}

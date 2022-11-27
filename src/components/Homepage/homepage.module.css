@@ -1,0 +1,27 @@
+.homepageHeading {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.homepageHeading h2,
+p {
+  margin: 0;
+}
+
+.homepageWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  /* background-color: blue; */
+  padding: 2rem;
+  height: 100%;
+}
