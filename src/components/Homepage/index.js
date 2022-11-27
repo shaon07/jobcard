@@ -14,8 +14,7 @@ export default function Homepage() {
         </Box>
 
         <Box>
-          <AccordionCard />
-          <AccordionCard />
+          <AccordionCard id={1} />
         </Box>
       </Container>
     </div>

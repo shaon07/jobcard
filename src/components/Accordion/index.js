@@ -8,7 +8,7 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import styles from './accordion.module.css';
 
-export default function AccordionCard() {
+export default function AccordionCard({ id }) {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange =
@@ -18,11 +18,45 @@ export default function AccordionCard() {
 
   return (
     <div className={`${styles.jobCard}`}>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={`${styles.accoundion}`}>
+      <Accordion expanded={expanded === 1} onChange={handleChange(1)} className={`${styles.accoundion}`}>
         <AccordionSummary
-          expandIcon={expanded ? <RemoveIcon /> : <AddIcon />}
+          expandIcon={expanded === 1 ? <RemoveIcon /> : <AddIcon />}
           aria-controls="panel1bh-content"
-          id="panel1bh-header"
+          id={id}
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }} className={`${styles.heading}`}>
+            General settings
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box className={`${styles.jobs}`}>
+            <b>Sales Manager</b>
+            <div className={`${styles.buttonGroup}`}>
+              <button>Delete</button>
+              <button>Apply Now</button>
+            </div>
+          </Box>
+          <Box className={`${styles.jobs}`}>
+            <b>Sales Manager</b>
+            <div className={`${styles.buttonGroup}`}>
+              <button>Delete</button>
+              <button>Apply Now</button>
+            </div>
+          </Box>
+          <Box className={`${styles.jobs}`}>
+            <b>Sales Manager</b>
+            <div className={`${styles.buttonGroup}`}>
+              <button>Delete</button>
+              <button>Apply Now</button>
+            </div>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 2} onChange={handleChange(2)} className={`${styles.accoundion}`}>
+        <AccordionSummary
+          expandIcon={expanded === 2 ? <RemoveIcon /> : <AddIcon />}
+          aria-controls="panel1bh-content"
+          id={id}
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }} className={`${styles.heading}`}>
             General settings
