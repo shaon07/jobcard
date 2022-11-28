@@ -47,7 +47,7 @@ const JobCard = ({ job }) => {
   const handlePostDetailOpen = () => setPostDetailOpen(true);
   const handlePostDetailClose = () => setPostDetailOpen(false);
   return (
-    <AccordionDetails >
+    <AccordionDetails sx={{ padding: "0 20px" }} >
       <Box className={`${styles.jobs}`} >
         <b>{job.jobTitle}</b>
         <div className={`${styles.buttonGroup}`}>
