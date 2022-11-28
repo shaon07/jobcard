@@ -1,11 +1,14 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null)
+  const router = useNavigate()
   console.log(user)
 
   useEffect(() => {
@@ -24,11 +27,16 @@ export function UserAuthContextProvider({ children }) {
       })
         .then((res => res.json()))
         .then(res => {
-          localStorage.setItem("user", JSON.stringify(res));
-          setUser(res)
+          if (Array.isArray(res.email) && Array.isArray(res.password)) {
+            setError(res);
+          } else {
+            localStorage.setItem("user", JSON.stringify(res));
+            setUser(res)
+            router('/')
+          }
         })
     } catch (error) {
-
+      setError(error.message)
     }
   }
   async function logOut() {
@@ -38,7 +46,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut }}
+      value={{ user, logIn, signUp, logOut, error, setError }}
     >
       {children}
     </userAuthContext.Provider>

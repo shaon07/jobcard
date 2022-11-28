@@ -6,8 +6,7 @@ import styles from './register.module.css';
 
 export default function Register() {
   const router = useNavigate();
-  const { signUp } = useUserAuth()
-  const [error, setError] = useState()
+  const { signUp, error, } = useUserAuth()
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -23,20 +22,14 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await signUp(userInfo)
-      router("/")
-
-    } catch (error) {
-      setError(error.message)
-    }
+    await signUp(userInfo)
   }
 
 
   return (
     <div className={`${styles.registerWrapper}`}>
       <form className={`${styles.registerForm}`} onSubmit={handleSubmit}>
-        <code style={{ color: "red", marginBottom: "20px" }}>{error}</code>
+        <code style={{ color: "red", marginBottom: "20px" }}>{error && JSON.stringify(error)}</code>
         <div className={`${styles.registerEmail} ${styles.inputBox}`}>
           <label htmlFor="text">Full Name</label>
           <input
