@@ -5,51 +5,43 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 import styles from './accordion.module.css';
 
-export default function AccordionCard({ id }) {
-  const [expanded, setExpanded] = useState(false);
+export default function AccordionCard({ post, id, expanded, setExpanded }) {
 
   const handleChange =
     (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
 
+
   return (
     <div className={`${styles.jobCard}`}>
-      <Accordion expanded={expanded === 1} onChange={handleChange(1)} className={`${styles.accoundion}`}>
+      <Accordion expanded={expanded === id} onChange={handleChange(id)} className={`${styles.accoundion}`}>
         <AccordionSummary
-          expandIcon={expanded === 1 ? <RemoveIcon /> : <AddIcon />}
+          expandIcon={expanded === id ? <RemoveIcon /> : <AddIcon />}
           aria-controls="panel1bh-content"
           id={id}
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }} className={`${styles.heading}`}>
-            General settings
+            {post.category}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <Button>Delete</Button>
-              <Button>Apply Now</Button>
-            </div>
-          </Box>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <Button>Delete</Button>
-              <Button>Apply Now</Button>
-            </div>
-          </Box>
-          <Box className={`${styles.jobs}`}>
-            <b>Sales Manager</b>
-            <div className={`${styles.buttonGroup}`}>
-              <Button>Delete</Button>
-              <Button>Apply Now</Button>
-            </div>
-          </Box>
+          {
+            post.item.map(((job, index) => {
+              return (
+                <Box className={`${styles.jobs}`} key={index}>
+                  <b>{job.jobTitle}</b>
+                  <div className={`${styles.buttonGroup}`}>
+                    <Button>Delete</Button>
+                    <Button>Apply Now</Button>
+                  </div>
+                </Box>
+              )
+            }))
+          }
         </AccordionDetails>
       </Accordion>
     </div>

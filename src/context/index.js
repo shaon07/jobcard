@@ -6,8 +6,8 @@ const userAuthContext = createContext();
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null)
+  const [post, setPost] = useState([])
   const router = useNavigate()
-  console.log(user)
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
@@ -27,6 +27,7 @@ export function UserAuthContextProvider({ children }) {
             console.log(res)
           } else {
             localStorage.setItem("user", JSON.stringify(res));
+            localStorage.setItem("userPass", JSON.stringify(password))
             setUser(res)
             console.log(res)
             router('/')
@@ -62,9 +63,36 @@ export function UserAuthContextProvider({ children }) {
     setUser(null)
   }
 
+  const userInfo = JSON.parse(localStorage.getItem("user"))
+  const pass = JSON.parse(localStorage.getItem("userPass"))
+  const encodedData = window.btoa(userInfo.user.email + ':' + pass);
+
+  async function getPost() {
+
+    try {
+      let headersList = {
+        "Accept": "*/*",
+        "Authorization": `Basic ${encodedData}`
+      }
+
+      let response = await fetch("https://tf-practical.herokuapp.com/api/job_post/", {
+        method: "GET",
+        headers: headersList
+      });
+      const data = await response.json()
+      setPost(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getPost()
+  }, [])
+
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, error, setError }}
+      value={{ user, logIn, signUp, logOut, error, setError, post }}
     >
       {children}
     </userAuthContext.Provider>
