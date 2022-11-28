@@ -32,12 +32,10 @@ export function UserAuthContextProvider({ children }) {
         .then(res => {
           if (res.detail) {
             setError(res);
-            console.log(res)
           } else {
             localStorage.setItem("user", JSON.stringify(res));
             localStorage.setItem("userPass", JSON.stringify(password))
             setUser(res)
-            console.log(res)
             setUpdateUI(updateUI + 1)
             router('/')
             setLoading(false)
@@ -74,7 +72,6 @@ export function UserAuthContextProvider({ children }) {
   }
 
 
-  console.log(window)
 
   async function getPost() {
     const userInfo = JSON.parse(localStorage.getItem("user"))
@@ -91,7 +88,6 @@ export function UserAuthContextProvider({ children }) {
         headers: headersList
       });
       const data = await response.json()
-      console.log(data)
       setPost(data)
     } catch (error) {
       console.log(error)
@@ -118,7 +114,7 @@ export function UserAuthContextProvider({ children }) {
     }
   }
 
-  async function addPost(post) {
+  async function addPost(post, setUserInfo) {
     const userInfo = JSON.parse(localStorage.getItem("user"))
     const pass = JSON.parse(localStorage.getItem("userPass"))
     const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
@@ -136,6 +132,17 @@ export function UserAuthContextProvider({ children }) {
         body: bodyContent,
         headers: headersList
       });
+      setUserInfo({
+        jobTitle: "",
+        lastDateOfApply: "",
+        level: "entry",
+        shift: "day",
+        location: "",
+        vacancies: 125,
+        jobType: "part_time",
+        jobDescription: "",
+        department: ""
+      })
       setUpdateUI(updateUI + 1)
       handleCloseModal()
     } catch (error) {

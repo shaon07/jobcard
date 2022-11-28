@@ -36,7 +36,7 @@ export default function BasicModal() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    addPost(userInfo)
+    await addPost(userInfo, setUserInfo)
     // await signUp(userInfo)
   }
 
