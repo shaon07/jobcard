@@ -6,8 +6,7 @@ import styles from './login.module.css';
 
 export default function Login() {
   const router = useNavigate();
-  const { logIn } = useUserAuth()
-  const [error, setError] = useState()
+  const { logIn, error, setError } = useUserAuth()
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: ""
@@ -26,7 +25,7 @@ export default function Login() {
   return (
     <div className={`${styles.loginWrapper}`}>
       <form className={`${styles.loginForm}`} onSubmit={handleSubmit}>
-        <code style={{ color: "red", marginBottom: "20px" }}>{error}</code>
+        <code style={{ color: "red", marginBottom: "20px" }}>{error && error.detail}</code>
         <div className={`${styles.loginEmail} ${styles.inputBox}`}>
           <label htmlFor="email">Email Address</label>
           <input
