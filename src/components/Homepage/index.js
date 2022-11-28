@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useUserAuth } from "../../context"
 import AccordionCard from "../Accordion"
 import Header from "../Header"
+import BasicModal from "../modal"
 import styles from './homepage.module.css'
 
 export default function Homepage() {
@@ -27,11 +28,16 @@ export default function Homepage() {
         </Box>
 
         <Box>
-          <AccordionCard id={1} post={{ category: "Full Time", item: fullTime }} expanded={expanded} setExpanded={setExpanded} />
-          <AccordionCard id={2} post={{ category: "Part Time", item: partTime }} expanded={expanded} setExpanded={setExpanded} />
-          <AccordionCard id={3} post={{ category: "Internship", item: intern }} expanded={expanded} setExpanded={setExpanded} />
+          {fullTime.length > 0 && <AccordionCard id={1} post={{ category: "Full Time", item: fullTime }} expanded={expanded} setExpanded={setExpanded} />}
+          {
+            partTime.length > 0 && <AccordionCard id={2} post={{ category: "Part Time", item: partTime }} expanded={expanded} setExpanded={setExpanded} />
+          }
+          {
+            intern.length > 0 && <AccordionCard id={3} post={{ category: "Internship", item: intern }} expanded={expanded} setExpanded={setExpanded} />
+          }
         </Box>
       </Container>
+      <BasicModal />
     </div>
   )
 }

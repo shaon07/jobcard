@@ -6,6 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import { Box } from "@mui/system";
 import React from "react";
+import { useUserAuth } from "../../context";
 import styles from './accordion.module.css';
 
 export default function AccordionCard({ post, id, expanded, setExpanded }) {
@@ -15,6 +16,8 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
       setExpanded(isExpanded ? panel : false);
     };
 
+  const { detelePost } = useUserAuth()
+  console.log(post)
 
   return (
     <div className={`${styles.jobCard}`}>
@@ -35,7 +38,7 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
                 <Box className={`${styles.jobs}`} key={index}>
                   <b>{job.jobTitle}</b>
                   <div className={`${styles.buttonGroup}`}>
-                    <Button>Delete</Button>
+                    <Button onClick={() => detelePost(job.id)}>Delete</Button>
                     <Button>Apply Now</Button>
                   </div>
                 </Box>

@@ -7,7 +7,13 @@ export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null)
   const [post, setPost] = useState([])
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+  const [updateUI, setUpdateUI] = useState(1)
+
   const router = useNavigate()
+
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
@@ -86,13 +92,31 @@ export function UserAuthContextProvider({ children }) {
     }
   }
 
+  async function detelePost(id) {
+
+    try {
+      let headersList = {
+        "Accept": "*/*",
+        "Authorization": `Basic ${encodedData}`
+      }
+
+      let response = await fetch(`https://tf-practical.herokuapp.com/api/job_update/${id}/`, {
+        method: "DELETE",
+        headers: headersList
+      });
+      setUpdateUI(updateUI + 1)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getPost()
-  }, [])
+  }, [updateUI])
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, error, setError, post }}
+      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost }}
     >
       {children}
     </userAuthContext.Provider>
