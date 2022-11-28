@@ -13,8 +13,8 @@ export function UserAuthContextProvider({ children }) {
   const [updateUI, setUpdateUI] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  const router = useNavigate()
 
+  const router = useNavigate()
 
   useEffect(() => {
     setUser(localStorage.getItem("user"))
@@ -70,8 +70,6 @@ export function UserAuthContextProvider({ children }) {
     localStorage.removeItem("user")
     setUser(null)
   }
-
-
 
   async function getPost() {
     const userInfo = JSON.parse(localStorage.getItem("user"))
@@ -159,7 +157,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost, addPost, loading }}
+      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost, addPost, loading, }}
     >
       {
         loading ? <h1>Loading</h1> : children

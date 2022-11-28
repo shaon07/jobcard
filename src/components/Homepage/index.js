@@ -11,7 +11,6 @@ export default function Homepage() {
   const { post, loading } = useUserAuth();
   const [expanded, setExpanded] = useState(false);
 
-  console.log(post)
   const fullTime = post?.filter(item => item?.jobType === 'full_time')
   const partTime = post?.filter(item => item?.jobType === 'part_time')
   const intern = post?.filter(item => item?.jobType === 'internship')

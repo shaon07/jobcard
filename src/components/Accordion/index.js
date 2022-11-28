@@ -5,9 +5,12 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { useUserAuth } from "../../context";
+import PostDetail from "../postDetail";
 import styles from './accordion.module.css';
+
+
 
 export default function AccordionCard({ post, id, expanded, setExpanded }) {
 
@@ -15,8 +18,6 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
     (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
-
-  const { detelePost } = useUserAuth()
 
   return (
     <div className={`${styles.jobCard}`}>
@@ -30,22 +31,31 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
             {post.category}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          {
-            post?.item?.map(((job, index) => {
-              return (
-                <Box className={`${styles.jobs}`} key={index}>
-                  <b>{job.jobTitle}</b>
-                  <div className={`${styles.buttonGroup}`}>
-                    <Button onClick={() => detelePost(job.id)}>Delete</Button>
-                    <Button>Apply Now</Button>
-                  </div>
-                </Box>
-              )
-            }))
-          }
-        </AccordionDetails>
+        {
+          post?.item?.map(((job, index) => {
+            return <JobCard key={index} job={job} />
+          }))
+        }
       </Accordion>
     </div>
   );
+}
+
+const JobCard = ({ job }) => {
+  const { detelePost, } = useUserAuth()
+  const [postDetailOpen, setPostDetailOpen] = useState(false);
+  const handlePostDetailOpen = () => setPostDetailOpen(true);
+  const handlePostDetailClose = () => setPostDetailOpen(false);
+  return (
+    <AccordionDetails >
+      <Box className={`${styles.jobs}`} >
+        <b>{job.jobTitle}</b>
+        <div className={`${styles.buttonGroup}`}>
+          <Button onClick={() => detelePost(job.id)}>Delete</Button>
+          <Button onClick={handlePostDetailOpen}>View</Button>
+        </div>
+        {postDetailOpen && <PostDetail data={job} postDetailOpen={postDetailOpen} handlePostDetailClose={handlePostDetailClose} />}
+      </Box>
+    </AccordionDetails>
+  )
 }
