@@ -77,7 +77,6 @@ export function UserAuthContextProvider({ children }) {
   console.log(window)
 
   async function getPost() {
-    setLoading(true)
     const userInfo = JSON.parse(localStorage.getItem("user"))
     const pass = JSON.parse(localStorage.getItem("userPass"))
     const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
@@ -94,7 +93,6 @@ export function UserAuthContextProvider({ children }) {
       const data = await response.json()
       console.log(data)
       setPost(data)
-      setLoading(false)
     } catch (error) {
       console.log(error)
     }
