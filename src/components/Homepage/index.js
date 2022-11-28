@@ -13,9 +13,9 @@ export default function Homepage() {
 
 
   console.log(post)
-  const fullTime = post.filter(item => item.jobType === 'full_time')
-  const partTime = post.filter(item => item.jobType === 'part_time')
-  const intern = post.filter(item => item.jobType === 'internship')
+  const fullTime = post?.filter(item => item.jobType === 'full_time')
+  const partTime = post?.filter(item => item.jobType === 'part_time')
+  const intern = post?.filter(item => item.jobType === 'internship')
 
   return (
     <div className={`${styles.homepageWrapper}`}>

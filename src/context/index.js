@@ -36,6 +36,7 @@ export function UserAuthContextProvider({ children }) {
             localStorage.setItem("userPass", JSON.stringify(password))
             setUser(res)
             console.log(res)
+            setUpdateUI(updateUI + 1)
             router('/')
           }
         })
@@ -69,12 +70,13 @@ export function UserAuthContextProvider({ children }) {
     setUser(null)
   }
 
-  const userInfo = JSON.parse(localStorage.getItem("user"))
-  const pass = JSON.parse(localStorage.getItem("userPass"))
-  const encodedData = window.btoa(userInfo.user.email + ':' + pass);
+
+  console.log(window)
 
   async function getPost() {
-
+    const userInfo = JSON.parse(localStorage.getItem("user"))
+    const pass = JSON.parse(localStorage.getItem("userPass"))
+    const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
     try {
       let headersList = {
         "Accept": "*/*",
@@ -93,7 +95,9 @@ export function UserAuthContextProvider({ children }) {
   }
 
   async function detelePost(id) {
-
+    const userInfo = JSON.parse(localStorage.getItem("user"))
+    const pass = JSON.parse(localStorage.getItem("userPass"))
+    const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
     try {
       let headersList = {
         "Accept": "*/*",
@@ -111,6 +115,9 @@ export function UserAuthContextProvider({ children }) {
   }
 
   async function addPost(post) {
+    const userInfo = JSON.parse(localStorage.getItem("user"))
+    const pass = JSON.parse(localStorage.getItem("userPass"))
+    const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
     try {
       let headersList = {
         "Accept": "*/*",

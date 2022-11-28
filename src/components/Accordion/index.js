@@ -17,7 +17,6 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
     };
 
   const { detelePost } = useUserAuth()
-  console.log(post)
 
   return (
     <div className={`${styles.jobCard}`}>
@@ -33,7 +32,7 @@ export default function AccordionCard({ post, id, expanded, setExpanded }) {
         </AccordionSummary>
         <AccordionDetails>
           {
-            post.item.map(((job, index) => {
+            post?.item?.map(((job, index) => {
               return (
                 <Box className={`${styles.jobs}`} key={index}>
                   <b>{job.jobTitle}</b>
