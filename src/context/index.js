@@ -39,6 +39,7 @@ export function UserAuthContextProvider({ children }) {
             setUpdateUI(updateUI + 1)
             router('/')
             setLoading(false)
+            setError(null)
           }
         })
     } catch (error) {
@@ -60,6 +61,7 @@ export function UserAuthContextProvider({ children }) {
           } else {
             console.log(res)
             router('/')
+            setError(null)
           }
         })
     } catch (error) {
@@ -69,6 +71,7 @@ export function UserAuthContextProvider({ children }) {
   async function logOut() {
     localStorage.removeItem("user")
     setUser(null)
+    setError(null)
   }
 
   async function getPost() {
