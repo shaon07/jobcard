@@ -1,0 +1,44 @@
+.modalForm {
+  background-color: var(--dark);
+  padding: 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 1rem;
+}
+
+.modalForm input {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.formBtn {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formBtn code {
+  cursor: pointer;
+}
+
+.modalEmail select {
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.inputBox textarea {
+  min-height: 4rem;
+  resize: vertical;
+}

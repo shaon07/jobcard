@@ -100,11 +100,33 @@ export function UserAuthContextProvider({ children }) {
         "Authorization": `Basic ${encodedData}`
       }
 
-      let response = await fetch(`https://tf-practical.herokuapp.com/api/job_update/${id}/`, {
+      await fetch(`https://tf-practical.herokuapp.com/api/job_update/${id}/`, {
         method: "DELETE",
         headers: headersList
       });
       setUpdateUI(updateUI + 1)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function addPost(post) {
+    try {
+      let headersList = {
+        "Accept": "*/*",
+        "Authorization": `Basic ${encodedData}`,
+        "Content-Type": "application/json"
+      }
+
+      let bodyContent = JSON.stringify(post);
+
+      await fetch("https://tf-practical.herokuapp.com/api/job_post/", {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList
+      });
+      setUpdateUI(updateUI + 1)
+      handleCloseModal()
     } catch (error) {
       console.log(error)
     }
@@ -116,7 +138,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost }}
+      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost, addPost }}
     >
       {children}
     </userAuthContext.Provider>
