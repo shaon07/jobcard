@@ -12,7 +12,7 @@ export default function Register() {
     password: "",
     full_name: "",
     birthDate: "",
-    gender: "",
+    gender: "Male",
     phone_number: ""
   })
 
@@ -70,7 +70,6 @@ export default function Register() {
             value={userInfo.gender || "Select gender"}
             onChange={(e) => setUserInfo({ ...userInfo, gender: e.target.value })}
           >
-            <option value="Select">Select</option>,
             <option value="Male">Male</option>,
             <option value="Female">Female</option>,
             <option value="Custom">Custom</option>,

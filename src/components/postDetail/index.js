@@ -17,7 +17,6 @@ const style = {
 };
 
 export default function PostDetail({ data, postDetailOpen, handlePostDetailClose }) {
-  console.log(data, " shon")
   return (
     <Modal
       open={postDetailOpen}

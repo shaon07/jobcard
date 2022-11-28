@@ -93,7 +93,6 @@ export default function BasicModal() {
               value={userInfo.shift || "Select shift"}
               onChange={(e) => setUserInfo({ ...userInfo, shift: e.target.value })}
             >
-              <option value="Select">Select</option>,
               <option value="day">Day</option>,
               <option value="night">Night</option>,
             </select>

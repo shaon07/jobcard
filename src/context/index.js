@@ -54,11 +54,11 @@ export function UserAuthContextProvider({ children }) {
       })
         .then((res => res.json()))
         .then(res => {
-          if (Array.isArray(res.email) && Array.isArray(res.password)) {
+          if (Array.isArray(res.email) || Array.isArray(res.password)) {
             setError(res);
+            console.log(res)
           } else {
-            // localStorage.setItem("user", JSON.stringify(res));
-            // setUser(res)
+            console.log(res)
             router('/')
           }
         })
