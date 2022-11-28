@@ -8,14 +8,13 @@ import BasicModal from "../modal"
 import styles from './homepage.module.css'
 
 export default function Homepage() {
-  const { post } = useUserAuth();
+  const { post, loading } = useUserAuth();
   const [expanded, setExpanded] = useState(false);
 
-
   console.log(post)
-  const fullTime = post?.filter(item => item.jobType === 'full_time')
-  const partTime = post?.filter(item => item.jobType === 'part_time')
-  const intern = post?.filter(item => item.jobType === 'internship')
+  const fullTime = post?.filter(item => item?.jobType === 'full_time')
+  const partTime = post?.filter(item => item?.jobType === 'part_time')
+  const intern = post?.filter(item => item?.jobType === 'internship')
 
   return (
     <div className={`${styles.homepageWrapper}`}>

@@ -7,6 +7,7 @@ import { useUserAuth } from "../context"
 
 export default function RoutesProvider() {
   const { user } = useUserAuth();
+
   return (
     user ?
       <>

@@ -11,6 +11,7 @@ export function UserAuthContextProvider({ children }) {
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
   const [updateUI, setUpdateUI] = useState(1)
+  const [loading, setLoading] = useState(false)
 
   const router = useNavigate()
 
@@ -20,6 +21,7 @@ export function UserAuthContextProvider({ children }) {
   }, [user])
 
   async function logIn(email, password) {
+    setLoading(true)
     try {
       fetch("https://tf-practical.herokuapp.com/api/login/", {
         method: "POST",
@@ -38,6 +40,7 @@ export function UserAuthContextProvider({ children }) {
             console.log(res)
             setUpdateUI(updateUI + 1)
             router('/')
+            setLoading(false)
           }
         })
     } catch (error) {
@@ -74,6 +77,7 @@ export function UserAuthContextProvider({ children }) {
   console.log(window)
 
   async function getPost() {
+    setLoading(true)
     const userInfo = JSON.parse(localStorage.getItem("user"))
     const pass = JSON.parse(localStorage.getItem("userPass"))
     const encodedData = window.btoa(userInfo?.user?.email + ':' + pass);
@@ -88,7 +92,9 @@ export function UserAuthContextProvider({ children }) {
         headers: headersList
       });
       const data = await response.json()
+      console.log(data)
       setPost(data)
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -140,14 +146,19 @@ export function UserAuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    getPost()
-  }, [updateUI])
+    if (user) {
+      getPost()
+    }
+  }, [updateUI, user])
+
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost, addPost }}
+      value={{ user, logIn, signUp, logOut, error, setError, post, handleOpenModal, handleCloseModal, modalOpen, detelePost, addPost, loading }}
     >
-      {children}
+      {
+        loading ? <h1>Loading</h1> : children
+      }
     </userAuthContext.Provider>
   );
 }
